@@ -21,7 +21,6 @@ class CovidGetByCountry extends Command
         $this->covidStatService = $statService;
         parent::__construct();
     }
-
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         try {
