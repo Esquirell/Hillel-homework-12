@@ -35,8 +35,7 @@ class StatRepository implements StatRepositoryInterface
         return $stat = $this->modelCountry->find($id)->stats()->first();
     }
 
-
-    public function addNewStat(array $data, $country, $stat)
+    public function addNewStat(array $data, Country $country, CovidStat $stat = null)
     {
         if($stat == null) {
             $stat = new CovidStat();
@@ -47,7 +46,6 @@ class StatRepository implements StatRepositoryInterface
         $stat->country()->associate($country);
         $stat->save();
     }
-
 
     public function findExistCountry(int $id)
     {
