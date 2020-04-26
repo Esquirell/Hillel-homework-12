@@ -1,11 +1,12 @@
 <?php
 
 
-namespace App\Http\repositories;
+namespace App\repositories;
 
 
-use App\Http\Models\Country;
-use App\Http\Models\CovidStat;
+
+use App\Models\Country;
+use App\Models\CovidStat;
 
 class StatRepository implements StatRepositoryInterface
 {
@@ -35,9 +36,11 @@ class StatRepository implements StatRepositoryInterface
     }
 
 
-    public function addNewStat(array $data, $country)
+    public function addNewStat(array $data, $country, $stat)
     {
-        $stat = new CovidStat();
+        if($stat == null) {
+            $stat = new CovidStat();
+        }
         $stat->ill = $data['ill'];
         $stat->death = $data['death'];
         $stat->good = $data['good'];
@@ -45,18 +48,15 @@ class StatRepository implements StatRepositoryInterface
         $stat->save();
     }
 
-    public function updateStat(array $data, $country, $stat)
-    {
-        $stat->ill = $data['ill'];
-        $stat->death = $data['death'];
-        $stat->good = $data['good'];
-        $stat->country()->associate($country);
-        $stat->save();
-    }
 
     public function findExistCountry(int $id)
     {
         return $this->modelCovidStat->find($id)->country()->first();
+    }
+
+    public function statList()
+    {
+        return $this->modelCovidStat->all();
     }
 
 

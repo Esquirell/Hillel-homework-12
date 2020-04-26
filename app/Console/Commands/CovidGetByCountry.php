@@ -4,7 +4,7 @@
 namespace App\Console\Commands;
 
 
-use App\Http\services\StatServiceInterface;
+use App\services\StatServiceInterface;
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

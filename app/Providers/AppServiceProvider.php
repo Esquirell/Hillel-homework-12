@@ -3,10 +3,10 @@
 namespace App\Providers;
 
 
-use App\Http\repositories\StatRepository;
-use App\Http\repositories\StatRepositoryInterface;
-use App\Http\services\StatService;
-use App\Http\services\StatServiceInterface;
+use App\repositories\StatRepository;
+use App\repositories\StatRepositoryInterface;
+use App\services\StatService;
+use App\services\StatServiceInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Http\services;
+namespace App\services;
 
 
 interface StatServiceInterface

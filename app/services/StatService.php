@@ -1,12 +1,10 @@
 <?php
 
 
-namespace App\Http\services;
+namespace App\services;
 
-
-use App\Http\Models\Country;
-use App\Http\Models\CovidStat;
-use App\Http\repositories\StatRepositoryInterface;
+use App\Models\CovidStat;
+use App\repositories\StatRepositoryInterface;
 
 class StatService implements StatServiceInterface
 {
@@ -31,15 +29,9 @@ class StatService implements StatServiceInterface
         if (!$country) {
             throw new \InvalidArgumentException('Country does not exist');
         }
-
         //проверка, существует ли запись в БД
         $stat = $this->getStatByCountry($country->id);
-        if($stat == null) {
-            $this->statRepository->addNewStat($data, $country);
-        }
-        else {
-            $this->statRepository->updateStat($data, $country, $stat);
-        }
+        $this->statRepository->addNewStat($data, $country, $stat);
     }
 
     //удаление
@@ -52,7 +44,7 @@ class StatService implements StatServiceInterface
     //вывод статистики
     public function list()
     {
-        return CovidStat::all();
+        return $this->statRepository->statList();
     }
 
     //получение статистики по стране
